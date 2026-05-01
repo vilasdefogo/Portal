@@ -77,7 +77,38 @@
     <section id="ranking">
       <h2>Ranking Interno</h2>
       <p>Ranking atualizado dos jogadores.</p>
-    </section>
+   <section id="membros">
+  <h2>Membros do Clã</h2>
+  <table id="tabelaMembros" border="1" cellpadding="5"></table>
+</section>
+
+<script>
+  async function carregarMembros() {
+    const url = "LINK_DA_PLANILHA_PUBLICADA"; // cole aqui o link CSV
+    const response = await fetch(url);
+    const data = await response.text();
+
+    const linhas = data.split("\n").map(l => l.split(","));
+    const tabela = document.getElementById("tabelaMembros");
+
+    // Cabeçalho
+    let header = "<tr>";
+    linhas[0].forEach(col => header += `<th>${col}</th>`);
+    header += "</tr>";
+    tabela.innerHTML = header;
+
+    // Linhas
+    for (let i = 1; i < linhas.length; i++) {
+      let row = "<tr>";
+      linhas[i].forEach(col => row += `<td>${col}</td>`);
+      row += "</tr>";
+      tabela.innerHTML += row;
+    }
+  }
+
+  carregarMembros();
+</script>
+
   </main>
 </body>
 </html>
