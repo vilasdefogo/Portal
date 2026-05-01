@@ -52,19 +52,31 @@
   </div>
 
   <script>
-    // Lista de membros autorizados
-    const membrosAutorizados = ["Bruno", "Carlos", "Ana"];
+   async function carregarMembros() {
+  const url = "LINK_DA_PLANILHA_PUBLICADA"; // substitua pelo link CSV
+  const response = await fetch(url);
+  const data = await response.text();
 
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+  const linhas = data.split("\n").map(l => l.split(","));
+  // Ignora cabeçalho
+  const membros = linhas.slice(1).map(l => ({nome: l[0], senha: l[1]}));
+  return membros;
+}
 
-      if (membrosAutorizados.includes(user) && pass === "clan123") {
-        window.location.href = "portal.html"; // redireciona para o portal
-      } else {
-        document.getElementById("msg").innerText = "Acesso negado!";
-      }
-    }
+async function login() {
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+
+  const membros = await carregarMembros();
+  const autorizado = membros.find(m => m.nome === user && m.senha === pass);
+
+  if (autorizado) {
+    window.location.href = "portal.html";
+  } else {
+    document.getElementById("msg").innerText = "Acesso negado!";
+  }
+}
+
   </script>
 </body>
 </html>
