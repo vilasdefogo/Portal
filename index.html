@@ -108,12 +108,20 @@
     /* Responsividade */
 @media (max-width: 600px) {
   .login-container {
-    margin: 5px; /* espaço lateral no celular */
-    padding: 15px;
+    margin: 10px; /* espaço lateral no celular */
+    padding: 20px;
   }
     input, button {
-    font-size: 14px;
-    padding: 10px;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+    /* Tablets e Telemóveis Grandes (Landscape) - entre 481px e 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-container {
+    max-width: 400px; /* Limita a largura para não ficar esticado no tablet */
+    margin: 0 auto;   /* Centra a caixa no ecrã */
+    padding: 30px;
   }
 }
 </style>
