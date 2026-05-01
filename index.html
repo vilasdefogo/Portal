@@ -25,7 +25,7 @@
       border-radius: 8px;
       width: 500px;
       text-align: center;
-       box-shadow: 0 0 40px rgba(0, 0, 0, 10.56); /* sombra para destacar o relevo */
+       box-shadow: 0 0 40px rgba(0, 0, 0, 1); /* sombra para destacar o relevo */
     }
     input {
       background: #470601;
@@ -72,10 +72,6 @@
     transform: scale(1);
   }
 }
-
-
-
-<body>
  
   <div class="login-box">
    <header> <img src="assets/imagens/LOGO2.png" alt="Vilas de Fogo" class="logo-fogo">
@@ -127,9 +123,10 @@
   color: #000;
 }
 </style>
+  <body>
 <script>
    async function carregarMembros() {
-  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=0&single=true&output=csv;" // substitua pelo link CSV
+  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=0&single=true&output=csv"; // substitua pelo link CSV
   const response = await fetch(url);
   const data = await response.text();
 
