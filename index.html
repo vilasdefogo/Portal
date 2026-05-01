@@ -82,6 +82,45 @@
   </div>
 
   <script>
+    .login-container {
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.login-container img {
+  max-width: 120px;   /* tamanho do logo */
+  margin-bottom: 15px; /* espaço entre logo e caixa */
+}
+
+.login-container input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.login-container button {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #ffd700;
+  color: #000;
+}
+
    async function carregarMembros() {
   const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=0&single=true&output=csv; // substitua pelo link CSV
   const response = await fetch(url);
