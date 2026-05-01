@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Portal Vilas de Fogo - Login</title>
   <style>
@@ -103,6 +104,17 @@
 .login-container button:hover {
   background: #ffd700;
   color: #000;
+}
+    /* Responsividade */
+@media (max-width: 600px) {
+  .login-container {
+    margin: 0 10px; /* espaço lateral no celular */
+    padding: 15px;
+  }
+    input, button {
+    font-size: 14px;
+    padding: 10px;
+  }
 }
 </style>
 </head>
