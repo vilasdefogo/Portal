@@ -73,16 +73,6 @@
   }
 }
  
-  <div class="login-box">
-   <header> <img src="assets/imagens/LOGO2.png" alt="Vilas de Fogo" class="logo-fogo">
-  </header>
-    <h4>Login do Clã</h4>
-    <input type="text" id="username" placeholder="Digite seu nome">
-    <input type="password" id="password" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
-    <p id="msg"></p>
-  </div>
-
     .login-container {
   padding: 10px;
   border-radius: 8px;
@@ -123,7 +113,17 @@
   color: #000;
 }
 </style>
+</head>
   <body>
+    <div class="login-box">
+   <header> <img src="assets/imagens/LOGO2.png" alt="Vilas de Fogo" class="logo-fogo">
+  </header>
+    <h4>Login do Clã</h4>
+    <input type="text" id="username" placeholder="Digite seu nome">
+    <input type="password" id="password" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <p id="msg"></p>
+  </div>
 <script>
    async function carregarMembros() {
   const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=0&single=true&output=csv"; // substitua pelo link CSV
