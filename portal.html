@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <meta charset="UTF-8">
   <title>Portal do Clã - Vilas de Fogo</title>
   <style>
@@ -91,6 +93,7 @@
     <section id="ranking">
       <h2>Ranking Interno</h2>
       <table id="tabelaRanking"></table>
+       <canvas id="graficoRanking" width="400" height="200"></canvas>
     </section>
   </main>
 
@@ -113,8 +116,41 @@
         linhas[i].forEach(col => row += `<td>${col}</td>`);
         row += "</tr>";
         tabela.innerHTML += row;
-      }
+       }
+
+    return linhas; // retorna os dados para usar no gráfico
+  }
+
+  async function carregarRanking(url) {
+    const linhas = await carregarTabela(url, "tabelaRanking");
+
+    const nomes = [];
+    const pontos = [];
+
+    for (let i = 1; i < linhas.length; i++) {
+      nomes.push(linhas[i][0]);
+      pontos.push(parseInt(linhas[i][1]));
     }
+
+    const ctx = document.getElementById("graficoRanking").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: nomes,
+        datasets: [{
+          label: "Pontos",
+          data: pontos,
+          backgroundColor: "#ff6600"
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  }
 
     // Substitua pelos links CSV de cada aba publicada
     carregarTabela("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv", "tabelaMembros");
