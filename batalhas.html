@@ -1,1 +1,32 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Vilas de Fogo</title>
+    <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do portal -->
+    <nav>
+        <div class="menu-links">
+          <a href="portal.html">Home</a>
+          <a href="membros.html">Membros</a>
+          <a href="batalhas.html" class="active">Batalhas</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="ranking.html">Ranking</a>
+          <a href="equipes.html">Equipes</a>
+        </div>
+      <a href="index.html" class="btn-sair">Sair</a>
+     </nav>
+ </head>
+ <body>
+   <header>
+   
+   </header>
+   <img src="assets/imagens/LOGO2.png" alt="Logo Fogo" class="logo-fogo">
+   <main>
+     <table id="tabelaEventos"></table>
+   </main>
+   <script>
+     carregarTabela("LINK_CSV_EVENTOS", "tabelaBatalhas");
+   </script>
+ </body>
+</html>
