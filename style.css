@@ -121,7 +121,8 @@ nav a:hover {
 }
 
     .logo-fogo {
-  max-width: 100px;
+  width: 100px;      /* tamanho da imagem */
+  max-width: 100%;   /* Impede que a logo ultrapasse a largura do ecrã */
   height: auto;      /* Mantém a proporção para não ficar "esmagada" */
   display: block;    /* Ajuda a centrar e alinhar */
   margin: 0 auto;    /* Centra a logo horizontalmente */
