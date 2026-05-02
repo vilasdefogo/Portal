@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <link rel="stylesheet" href="style.css">
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Membros - Vilas de Fogo</title>
-</head>
-<body>
-  <header>
-    <h1>Membros do Clã</h1>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Vilas de Fogo</title>
+    <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do portal -->
     <nav>
-      <a href="portal.html">← Voltar ao Portal</a>
-    </nav>
-  </header>
-  <style>
-    .btn-sair {
-  color: #fff;
-  background: #b22222;
-  padding: 6px 12px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.btn-sair:hover {
-  background: #ff0000;
-}
-</style>
-
-  <main>
-    <!-- Substitua SEU-LINK pelo link publicado da planilha -->
-    <iframe src="https://docs.google.com/spreadsheets/d/e/https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv/pubhtml?widget=true&amp;headers=false" 
-            width="100%" height="600"></iframe>
-  </main>
-</body>
+        <div class="menu-links">
+          <a href="portal.html">Home</a>
+          <a href="membros.html" class="active">Membros</a>
+          <a href="batalhas.html">Batalhas</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="ranking.html">Ranking</a>
+          <a href="equipes.html">Equipes</a>
+        </div>
+      <a href="index.html" class="btn-sair">Sair</a>
+     </nav>
+ </head>
+ <body>
+   <header>
+   
+   </header>
+   <img src="assets/imagens/LOGO2.png" alt="Logo Fogo" class="logo-fogo">
+   <main>
+     <table id="tabelaEventos"></table>
+   </main>
+   <script>
+     carregarTabela("LINK_CSV_EVENTOS", "tabelaMembros");
+   </script>
+ </body>
 </html>
-
-
