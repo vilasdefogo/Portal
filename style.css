@@ -122,8 +122,9 @@ nav a:hover {
 
     .logo-fogo {
   max-width: 400px;
-  display: block;
-  margin: 0 auto;
+  height: auto;      /* Mantém a proporção para não ficar "esmagada" */
+  display: block;    /* Ajuda a centrar e alinhar */
+  margin: 0 auto;    /* Centra a logo horizontalmente */
   animation: pulsarFogo 4s infinite;
   filter: drop-shadow(0 0 10px #ff6600) drop-shadow(0 0 20px #ff3300);
 }
