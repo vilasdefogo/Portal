@@ -69,7 +69,7 @@ nav a:hover {
 /* Botão sair destacado à direita */
 .btn-sair {
   color: #fff;
-  font-size: 25px; /* aumenta o tamanho padrão */
+  font-size: 10px; /* aumenta o tamanho padrão */
   background: #b22222;
   padding: 8px 8px;
   border-radius: 5px;
