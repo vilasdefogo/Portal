@@ -22,14 +22,17 @@ body {
 }
 
 /* Cabeçalho */
-header {
-  background: #6e1303;
-  padding: 5px;
-  background-image: url("assets/imagens/background2.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
+ header {
+      background: #6e1303;
+      padding: 5px;
+      text-align: ;
+      background-image: url("assets/imagens/background2.png"); /* sua imagem com a chama */
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      align-items: center;
+      height:;
+    }
 
 header h1 {
   margin: 0;
