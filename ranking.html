@@ -1,251 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <nav>
-  <a href="membros.html">Membros</a>
-  <a href="batalhas.html">Batalhas</a>
-  <a href="eventos.html">Eventos</a>
-  <a href="ranking.html">Ranking</a>
-  <a href="equipes.html">Equipes</a>
-  <a href="login.html" class="btn-sair">Sair</a>
-</nav>
-
-
-  <meta charset="UTF-8">
-  <title>Portal do Clã - Vilas de Fogo</title>
-  <style>
-    .tabela-resumo {
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  background: #f9f9f9;
-}
-
-.tabela-resumo h2 {
-  margin-top: 0;
-}
-
-.tabela-resumo a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #ff6600;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.tabela-resumo a:hover {
-  text-decoration: underline;
-}
-
-    @font-face {
-  font-family: 'Neo';
-  src: url('assets/Fonts/neo/Neo.woff2') format('woff2'),
-       url('assets/Fonts/neo/Neo.woff') format('woff'),
-       url('assets/Fonts/neo/Neo.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-    
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #1c1c1c;
-      color: #fff;
-      background-image: url("assets/imagens/background.png"); /* sua imagem com a chama */
-        background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-     
-      align-items: center;
-      height: 200vh;
-    }
-    header {
-      background: #6e1303;
-      padding: 5px;
-      text-align: ;
-      background-image: url("assets/imagens/background2.png"); /* sua imagem com a chama */
-        background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-     
-      align-items: center;
-      height:;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #ffd700;
-    }
-    nav {
-      background: rgba(0, 0, 0, 0.25); /* leve transparência para ver o relevo atrás */
-      display: flex;
-      justify-content: center;
-      padding: 25px;
-    }
-    nav a {
-  color: #d69e11;
-  margin: 0 10px;           /* Espaçamento ligeiramente reduzido para não quebrar em ecrãs pequenos */
-  text-decoration: none;
-  font-weight: 600;         /* Definido como semi-bold para melhor legibilidade */
-  font-family: 'Neo', sans-serif;
-  font-size: 25px; /* aumenta o tamanho padrão */
-  transition: opacity 0.3s; /* Suaviza a interação */
-  display: inline-block;    /* Melhora a área de toque */
-  border-bottom: 2px solid transparent; /* Linha invisível por padrão */
-  padding-bottom: 4px;
-}
-
-/* Efeito ao passar o rato ou tocar */
-nav a:hover {
-  opacity: 0.70;
-   color: #ffb81c; /* Muda para um tom de dourado mais claro, por exemplo */
-  padding-bottom: 2px;         /* ESTE é o espaço que afasta a linha da palavra */
-    text-decoration: none;
-   border-bottom: 2px solid #d69e11; /* A linha "aparece" sem mover nada */
-}
-    }
-    main {
-      padding: 20px;
-    }
-    #graficoRanking {
-      max-width: 300px;   /* largura máxima */
-      max-height: 150px;  /* altura máxima */
-      margin: 20px auto;  /* centralizado */
-      display: block;
-    }
-    .logo-fogo {
-  max-width: 400px;
-  display: block;
-  margin: 0 auto;
-  animation: pulsarFogo 4s infinite;
-  filter: drop-shadow(0 0 10px #ff6600) drop-shadow(0 0 20px #ff3300);
-}
-
-@keyframes pulsarFogo {
-  0% {
-    filter: drop-shadow(0 0 5px #ff6600) drop-shadow(0 0 10px #ff3300);
-    transform: scale(1);
-  }
-  50% {
-    filter: drop-shadow(0 0 20px #ffd700) drop-shadow(0 0 30px #ff6600);
-    transform: scale(1.05);
-  }
-  100% {
-    filter: drop-shadow(0 0 5px #ff6600) drop-shadow(0 0 10px #ff3300);
-    transform: scale(1);
-  }
-}
-
-  </style>
-</head>
-<body>
-
-  <img src="assets/imagens/LOGO2.png" alt="" class="logo-fogo">
- 
-
-
-
-
-
- 
-  <main>
-    <div class="tabelas">
-  <!-- Recursos: só abreviação -->
-  <div class="tabela-resumo">
-    <h2>Recursos</h2>
-    <p>Ouro, Madeira, Pedra...</p>
-    <a href="recursos.html">Ver tabela completa</a>
-  </div>
-
-  <!-- Eventos: só abreviação -->
-  <div class="tabela-resumo">
-    <h2>Eventos</h2>
-    <p>Próximo: Torneio de Maio</p>
-    <a href="eventos.html">Ver tabela completa</a>
-  </div>
-
-  <!-- Outras tabelas: só abreviação -->
-  <div class="tabela-resumo">
-    <h2>Ranking</h2>
-    <p>Top 3 jogadores...</p>
-    <a href="ranking.html">Ver tabela completa</a>
-  </div>
-</div>
-
-  </main>
-
-  <script>
-    async function carregarTabela(url, tabelaId) {
-      const response = await fetch(url);
-      const data = await response.text();
-      const linhas = data.split("\n").map(l => l.split(","));
-      const tabela = document.getElementById(tabelaId);
-
-      // Cabeçalho
-      let header = "<tr>";
-      linhas[0].forEach(col => header += `<th>${col}</th>`);
-      header += "</tr>";
-      tabela.innerHTML = header;
-
-      // Linhas
-      for (let i = 1; i < linhas.length; i++) {
-        let row = "<tr>";
-        linhas[i].forEach(col => row += `<td>${col}</td>`);
-        row += "</tr>";
-        tabela.innerHTML += row;
-      }
-
-      return linhas; // retorna os dados para usar no gráfico
-    }
-
-    async function carregarRanking(url) {
-      const linhas = await carregarTabela(url, "tabelaRanking");
-
-      const nomes = [];
-      const pontos = [];
-
-      for (let i = 1; i < linhas.length; i++) {
-        nomes.push(linhas[i][0]);
-        pontos.push(parseInt(linhas[i][1]));
-      }
-
-      const ctx = document.getElementById("graficoRanking").getContext("2d");
-
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: nomes,
-          datasets: [{
-            label: "Pontos",
-            data: pontos,
-            backgroundColor: [
-              "#ff6600", "#ffd700", "#00ccff", "#33cc33", "#cc33ff"
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { display: false }
-          },
-          animation: {
-            duration: 1500,
-            easing: "easeOutBounce"
-          }
-        }
-      });
-    }
-
-    // Substitua pelos links CSV de cada aba publicada
-    carregarTabela("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv", "tabelaMembros");
-    carregarTabela("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=956780593&single=true&output=csv", "tabelaBatalhas");
-    carregarTabela("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=757280293&single=true&output=csv", "tabelaEventos");
-    carregarRanking("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=1227128405&single=true&output=csv");
-    carregarTabela("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=554377573&single=true&output=csv", "tabelaEquipess");
-  </script>
-</body>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Vilas de Fogo</title>
+    <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do portal -->
+    <nav>
+        <div class="menu-links">
+          <a href="portal.html">Home</a>
+          <a href="membros.html">Membros</a>
+          <a href="batalhas.html">Batalhas</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="ranking.html" class="active">Ranking</a>
+          <a href="equipes.html">Equipes</a>
+        </div>
+      <a href="index.html" class="btn-sair">Sair</a>
+     </nav>
+ </head>
+ <body>
+   <header>
+   
+   </header>
+   <img src="assets/imagens/LOGO2.png" alt="Logo Fogo" class="logo-fogo">
+   <main>
+     <table id="tabelaEventos"></table>
+   </main>
+   <script>
+     carregarTabela("LINK_CSV_EVENTOS", "tabelaRanking");
+   </script>
+ </body>
 </html>
