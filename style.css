@@ -74,6 +74,12 @@ nav a:hover {
   color: #000;
   border-bottom: 2px solid #d69e11; /* A linha "aparece" sem mover nada */
 }
+/* Cor para o link da página atual */
+.menu-links a.active {
+  color: #ffffff; /* Cor diferente (ex: Branco) */
+  border-bottom: 2px solid #ffffff; /* Linha fixa para marcar a página */
+  opacity: 1; /* Garante que não está transparente */
+}
 
 /* Tabelas resumo */
 .tabela-resumo {
