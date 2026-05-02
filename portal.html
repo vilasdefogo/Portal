@@ -15,7 +15,30 @@
   <meta charset="UTF-8">
   <title>Portal do Clã - Vilas de Fogo</title>
   <style>
-    
+    .tabela-resumo {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.tabela-resumo h2 {
+  margin-top: 0;
+}
+
+.tabela-resumo a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tabela-resumo a:hover {
+  text-decoration: underline;
+}
+
     @font-face {
   font-family: 'Neo';
   src: url('assets/Fonts/neo/Neo.woff2') format('woff2'),
@@ -128,31 +151,29 @@ nav a:hover {
 
  
   <main>
-    <section id="membros">
-      <h2>Membros do Clã</h2>
-      <table id="tabelaMembros"></table>
-    </section>
+    <div class="tabelas">
+  <!-- Recursos: só abreviação -->
+  <div class="tabela-resumo">
+    <h2>Recursos</h2>
+    <p>Ouro, Madeira, Pedra...</p>
+    <a href="recursos.html">Ver tabela completa</a>
+  </div>
 
-    <section id="batalhas">
-      <h2>Batalhas</h2>
-      <table id="tabelaBatalhas"></table>
-    </section>
+  <!-- Eventos: só abreviação -->
+  <div class="tabela-resumo">
+    <h2>Eventos</h2>
+    <p>Próximo: Torneio de Maio</p>
+    <a href="eventos.html">Ver tabela completa</a>
+  </div>
 
-    <section id="eventos">
-      <h2>Eventos</h2>
-      <table id="tabelaEventos"></table>
-    </section>
+  <!-- Outras tabelas: só abreviação -->
+  <div class="tabela-resumo">
+    <h2>Ranking</h2>
+    <p>Top 3 jogadores...</p>
+    <a href="ranking.html">Ver tabela completa</a>
+  </div>
+</div>
 
-    <section id="ranking">
-      <h2>Ranking Interno</h2>
-      <table id="tabelaRanking"></table>
-      <canvas id="graficoRanking"></canvas>
-    </section>
-    
-    <section id="equipes">
-      <h2>Equipes</h2>
-      <table id="tabelaEquipes"></table>
-    </section>
   </main>
 
   <script>
