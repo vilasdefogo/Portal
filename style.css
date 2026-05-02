@@ -85,6 +85,7 @@ nav a:hover {
 
 .btn-sair:hover {
   background: #ff0000;
+   padding: 8px 8px;
   font-size: 15px; /* aumenta o tamanho padrão */
   color: #000;
   border-bottom: 2px solid #d69e11; /* A linha "aparece" sem mover nada */
