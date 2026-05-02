@@ -99,7 +99,7 @@ nav a:hover {
 /* Ajuste para telemóveis e ecrãs pequenos */
 @media (max-width: 480px) {
   .menu-links a {
-    font-size: 10px;     /* Diminui o texto para caber em linha */
+    font-size: 8px;     /* Diminui o texto para caber em linha */
     margin: 0 8px;       /* Reduz um pouco o espaço entre os links */
     padding-bottom: 2px; /* Aproxima um pouco a linha para não ocupar muito espaço vertical */
   }
