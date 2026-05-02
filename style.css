@@ -131,7 +131,7 @@ nav a:hover {
   transition: opacity 0.3s;
 }
 .logo-fogo:hover {
-width: 300px;      /* tamanho da imagem */
+width: 250px;      /* tamanho da imagem */
   
 }
 @keyframes pulsarFogo {
