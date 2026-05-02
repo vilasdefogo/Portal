@@ -123,6 +123,13 @@ nav a:hover {
     padding-bottom: 2px; /* Aproxima um pouco a linha para não ocupar muito espaço vertical */
   }
 }
+    .logo-fogo {
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+  animation: pulsarFogo 4s infinite;
+  filter: drop-shadow(0 0 10px #ff6600) drop-shadow(0 0 20px #ff3300);
+}
 
 @keyframes pulsarFogo {
   0% {
