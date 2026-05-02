@@ -1,1 +1,102 @@
+/* Fonte personalizada */
+@font-face {
+  font-family: 'Neo';
+  src: url('assets/Fonts/neo/Neo.woff2') format('woff2'),
+       url('assets/Fonts/neo/Neo.woff') format('woff'),
+       url('assets/Fonts/neo/Neo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Corpo da página */
+body {
+  margin: 0;
+  font-family: 'Neo', Arial, sans-serif;
+  background: #1c1c1c;
+  color: #fff;
+  background-image: url("assets/imagens/background.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Cabeçalho */
+header {
+  background: #6e1303;
+  padding: 5px;
+  background-image: url("assets/imagens/background2.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #ffd700;
+}
+
+/* Menu de navegação */
+nav {
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+}
+
+nav a {
+  color: #d69e11;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 25px;
+  transition: opacity 0.3s;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+}
+
+nav a:hover {
+  opacity: 0.70;
+  color: #ffb81c;
+  border-bottom: 2px solid #d69e11;
+}
+
+/* Botão sair */
+.btn-sair {
+  color: #fff;
+  background: #b22222;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn-sair:hover {
+  background: #ff0000;
+}
+
+/* Tabelas resumo */
+.tabela-resumo {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.tabela-resumo h2 {
+  margin-top: 0;
+}
+
+.tabela-resumo a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tabela-resumo a:hover {
+  text-decoration: underline;
+}
 
