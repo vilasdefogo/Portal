@@ -129,7 +129,10 @@ nav a:hover {
   animation: pulsarFogo 4s infinite;
   filter: drop-shadow(0 0 10px #ff6600) drop-shadow(0 0 20px #ff3300);
 }
-
+.logo-fogo:hover {
+width: 300px;      /* tamanho da imagem */
+  
+}
 @keyframes pulsarFogo {
   0% {
     filter: drop-shadow(0 0 5px #ff6600) drop-shadow(0 0 10px #ff3300);
