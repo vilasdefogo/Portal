@@ -214,32 +214,7 @@ nav a:hover {
         pontos.push(parseInt(linhas[i][1]));
       }
 
-      const ctx = document.getElementById("graficoRanking").getContext("2d");
-
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: nomes,
-          datasets: [{
-            label: "Pontos",
-            data: pontos,
-            backgroundColor: [
-              "#ff6600", "#ffd700", "#00ccff", "#33cc33", "#cc33ff"
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { display: false }
-          },
-          animation: {
-            duration: 1500,
-            easing: "easeOutBounce"
-          }
-        }
-      });
-    }
+      
 
     // Substitua pelos links CSV de cada aba publicada
     carregarTabela("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv", "tabelaMembros");
