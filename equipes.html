@@ -1,43 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eventos - Vilas de Fogo</title>
-  <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do portal -->
-</head>
-<body>
-  <header>
-    <h1>Eventos</h1>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Vilas de Fogo</title>
+    <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do portal -->
     <nav>
-      <a href="portal.html">Portal</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="ranking.html">Ranking</a>
-      <a href="equipes.html">Equipes</a>
-      <a href="membros.html">Membros</a>
-      <a href="login.html" class="btn-sair">Sair</a>
-    </nav>
-  </header>
-  <style>
-    .btn-sair {
-  color: #fff;
-  background: #b22222;
-  padding: 6px 12px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.btn-sair:hover {
-  background: #ff0000;
-}
-</style>
-
-  <main>
-    <table id="tabelaEquipes"></table>
-  </main>
-
-  <script>
-    carregarTabela("LINK_CSV_EVENTOS", "tabelaEventos");
-  </script>
-</body>
+        <div class="menu-links">
+          <a href="portal.html">Home</a>
+          <a href="membros.html">Membros</a>
+          <a href="batalhas.html">Batalhas</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="ranking.html">Ranking</a>
+          <a href="equipes.html" class="active">Equipes</a>
+        </div>
+      <a href="index.html" class="btn-sair">Sair</a>
+     </nav>
+ </head>
+ <body>
+   <header>
+   
+   </header>
+   <img src="assets/imagens/LOGO2.png" alt="Logo Fogo" class="logo-fogo">
+   <main>
+     <table id="tabelaEventos"></table>
+   </main>
+   <script>
+     carregarTabela("LINK_CSV_EVENTOS", "tabelaEquipes");
+   </script>
+ </body>
 </html>
-
