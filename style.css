@@ -107,6 +107,19 @@ nav a:hover {
     padding-bottom: 2px; /* Aproxima um pouco a linha para não ocupar muito espaço vertical */
   }
 }
+@media (max-width: 480px) {
+  .btn-sair { 
+    display: flex;
+    justify-content: center; /* Centraliza na horizontal */
+    align-items: center;     /* Centraliza na vertical */
+    
+    height: 45px;            /* Define uma altura fixa para garantir o centro */
+    padding: 0;              /* Remove paddings que possam estar a empurrar o texto */
+    line-height: 1;          /* Reseta o espaçamento entre linhas */
+    text-align: center;
+  }
+}
+
     .logo-fogo {
   max-width: 400px;
   display: block;
