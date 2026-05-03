@@ -179,6 +179,13 @@
   cursor: pointer;
   color: #ff6600;
 }
+    .erro {
+  color: #ff4444;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: none; /* começa escondido */
+}
+
 
 </style>
 </head>
@@ -196,11 +203,16 @@
   <p>Não tem conta? 
     <a href="#" id="abrirCadastro">Cadastrar</a>
   </p>
-  <!-- Modal flutuante -->
-<div id="modalCadastro" class="modal">
+
+</div>
+      <div id="modalCadastro" class="modal">
   <div class="modal-conteudo">
     <span id="fecharCadastro" class="fechar">&times;</span>
     <h2>Cadastrar Membro</h2>
+    
+    <!-- Mensagem de erro -->
+    <div id="mensagemErro" class="erro"></div>
+    
     <input type="text" id="nomeCadastro" placeholder="Seu nome">
     <input type="text" id="posicaoCadastro" placeholder="Sua posição">
     <input type="password" id="senhaCadastro" placeholder="Crie uma senha">
@@ -208,6 +220,7 @@
     <button onclick="enviarCadastro()">Enviar</button>
   </div>
 </div>
+
 </div>
 
 <script>
@@ -254,13 +267,13 @@ window.onclick = (event) => {
     modalCadastro.style.display = "none"; // fecha ao clicar fora
   }
 };
-  async function enviarCadastro() {
+async function enviarCadastro() {
   const nome = document.getElementById("nomeCadastro").value.trim();
   const posicao = document.getElementById("posicaoCadastro").value.trim();
   const senha = document.getElementById("senhaCadastro").value.trim();
   const arquivo = document.getElementById("imagemCadastro").files[0];
+  const mensagemErro = document.getElementById("mensagemErro");
 
-  // Lista de campos faltando
   let faltando = [];
 
   if (!nome) faltando.push("Nome");
@@ -269,7 +282,8 @@ window.onclick = (event) => {
   if (!arquivo) faltando.push("Imagem");
 
   if (faltando.length > 0) {
-    alert("Preencher todos os campos!\nFaltando: " + faltando.join(", "));
+    mensagemErro.style.display = "block";
+    mensagemErro.innerText = "Preencher todos os campos! Faltando: " + faltando.join(", ");
     return; // não envia se faltar algo
   }
 
