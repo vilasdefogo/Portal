@@ -89,9 +89,10 @@ nav a:hover {
 
 /* Tabelas resumo */
 .tabela-resumo {
+  display: flex;
   border: 1px solid #ccc;
   padding: 15px;
-  margin: 10px 0;
+  margin: 10px 20px;
   border-radius: 8px;
   background: #f9f9f9;
 }
