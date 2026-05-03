@@ -117,7 +117,7 @@ async function enviarAviso() {
   const mensagem = document.getElementById("mensagem").value;
 
   if (autor && mensagem) {
-    await fetch("URL_DO_SEU_WEBAPP", {
+    await fetch("https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ autor, mensagem })
