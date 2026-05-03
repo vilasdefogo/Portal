@@ -88,19 +88,23 @@ nav a:hover {
   border-bottom: 2px solid #ffffff; /* Linha fixa para marcar a página */
   opacity: 1; /* Garante que não está transparente */
 }
+main div:tabela-resumo {
+  margin: 
+}
 
 /* Tabelas resumo */
 .tabela-resumo {
   align-items: center;  /* Mantém a logo centrada verticalmente */
   border: 1px solid #ccc;
   padding: 15px;
-  margin: 10px 200px 10px 20px;
+  margin: 10px 20px 10px 20px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.25); /* leve transparência para ver o relevo atrás */
 }
 
 .tabela-resumo h2 {
-  margin-top: 0;
+   width: 600px;  /* Largura exata */
+  height: 500px; /* Altura exata */
 }
 
 .tabela-resumo a {
