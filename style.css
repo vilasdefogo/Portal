@@ -170,7 +170,7 @@ width: 250px;      /* tamanho da imagem */
   
   }
   
-                                          /* CONTROLA O ESTILO DO AVISO DO CLÃ */ 
+/*----------------------------------------------------------------- CONTROLA O ESTILO DO AVISO DO CLÃ -------------------------------------------*/ 
   .avisos {
   border: 2px solid #ff6600;
   background: rgba(0,0,0,0.6);
