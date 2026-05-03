@@ -89,7 +89,8 @@ nav a:hover {
   opacity: 1; /* Garante que não está transparente */
 }
 main div:tabela-resumo {
-  margin: 
+   width: 600px;  /* Largura exata */
+  height: 500px; /* Altura exata */
 }
 
 /* Tabelas resumo */
@@ -103,8 +104,7 @@ main div:tabela-resumo {
 }
 
 .tabela-resumo h2 {
-   width: 600px;  /* Largura exata */
-  height: 500px; /* Altura exata */
+   margin-top: 0;
 }
 
 .tabela-resumo a {
