@@ -302,6 +302,22 @@ async function enviarCadastro() {
   document.getElementById("modalCadastro").style.display = "none";
 }
 
+const reader = new FileReader();
+reader.onload = async function() {
+  const base64 = reader.result.split(",")[1]; // tira o prefixo data:image/png;base64
+  await fetch("URL_DO_SEU_WEBAPP", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nome,
+      posicao,
+      senha,
+      imagemBase64: base64,
+      tipo: arquivo.type
+    })
+  });
+};
+reader.readAsDataURL(arquivo);
 
 
 
