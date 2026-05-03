@@ -144,6 +144,41 @@
 .login-extra a:hover {
   text-decoration: underline;
 }
+/*=================================================================================================================================*/
+    .modal {
+  display: none; /* começa escondido */
+  position: fixed;
+  z-index: 1000; /* fica acima de tudo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7); /* fundo escuro translúcido */
+}
+
+.modal-conteudo {
+  background-color: #222;
+  margin: 10% auto;
+  padding: 20px;
+  border: 2px solid #ff6600;
+  width: 300px;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  animation: aparecer 0.3s ease-out; /* animação suave */
+}
+
+@keyframes aparecer {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.fechar {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff6600;
+}
 
 </style>
 </head>
@@ -161,7 +196,8 @@
   <p>Não tem conta? 
     <a href="#" id="abrirCadastro">Cadastrar</a>
   </p>
-    <div id="modalCadastro" class="modal" style="display:none;">
+  <!-- Modal flutuante -->
+<div id="modalCadastro" class="modal">
   <div class="modal-conteudo">
     <span id="fecharCadastro" class="fechar">&times;</span>
     <h2>Cadastrar Membro</h2>
