@@ -254,6 +254,41 @@ window.onclick = (event) => {
     modalCadastro.style.display = "none"; // fecha ao clicar fora
   }
 };
+  async function enviarCadastro() {
+  const nome = document.getElementById("nomeCadastro").value.trim();
+  const posicao = document.getElementById("posicaoCadastro").value.trim();
+  const senha = document.getElementById("senhaCadastro").value.trim();
+  const arquivo = document.getElementById("imagemCadastro").files[0];
+
+  // Lista de campos faltando
+  let faltando = [];
+
+  if (!nome) faltando.push("Nome");
+  if (!posicao) faltando.push("Posição");
+  if (!senha) faltando.push("Senha");
+  if (!arquivo) faltando.push("Imagem");
+
+  if (faltando.length > 0) {
+    alert("Preencher todos os campos!\nFaltando: " + faltando.join(", "));
+    return; // não envia se faltar algo
+  }
+
+  // Se tudo preenchido, envia
+  const formData = new FormData();
+  formData.append("nome", nome);
+  formData.append("posicao", posicao);
+  formData.append("senha", senha);
+  formData.append("imagem", arquivo);
+
+  await fetch("URL_DO_SEU_WEBAPP", {
+    method: "POST",
+    body: formData
+  });
+
+  alert("Cadastro realizado com sucesso!");
+  document.getElementById("modalCadastro").style.display = "none"; // fecha popup
+}
+
 
 
 
