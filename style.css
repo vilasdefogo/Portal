@@ -262,7 +262,8 @@ width: 250px;      /* tamanho da imagem */
 }
 
 .titulo-bady {
-  margin: 20px 50% 20px 20px;  /* O 'auto' centra o bloco automaticamente */
+  font-size: 20px
+  margin: 20px auto;  /* O 'auto' centra o bloco automaticamente */
    color: #ff6600;
   text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
   -webkit-text-stroke: 1px #ffffff; /* 1px de espessura e cor branca */
