@@ -86,7 +86,7 @@
 }
 // Exemplo de carregamento de avisos da planilha
     async function carregarAvisos() {
-      const url = "https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec"; // link da aba publicada como CSV
+      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pubhtml?gid=1571891642&single=true"; // link da aba publicada como CSV
       const response = await fetch(url);
       const data = await response.text();
       const linhas = data.split("\n").map(l => l.split(","));
@@ -112,24 +112,6 @@ abrir.onclick = () => modal.style.display = "block";
 fechar.onclick = () => modal.style.display = "none";
 window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
 
-async function enviarAviso() {
-  const autor = document.getElementById("autor").value;
-  const mensagem = document.getElementById("mensagem").value;
-
-  if (autor && mensagem) {
-    await fetch("https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ autor, mensagem })
-    });
-    alert("Aviso enviado com sucesso!");
-    document.getElementById("autor").value = "";
-    document.getElementById("mensagem").value = "";
-    modal.style.display = "none"; // fecha o popup
-  } else {
-    alert("Preencha todos os campos!");
-  }
-}
 
  
  // -------------------------------------------------------------------------TABELAS----------------------------------------------------------- //
