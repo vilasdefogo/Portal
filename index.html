@@ -237,14 +237,24 @@ async function login() {
 }
   // Abrir/fechar modal de cadastro
 const modalCadastro = document.getElementById("modalCadastro");
-document.getElementById("abrirCadastro").onclick = (e) => {
-  e.preventDefault(); // evita recarregar a página
-  modalCadastro.style.display = "block";
+const abrirCadastro = document.getElementById("abrirCadastro");
+const fecharCadastro = document.getElementById("fecharCadastro");
+
+abrirCadastro.onclick = (e) => {
+  e.preventDefault();
+  modalCadastro.style.display = "block"; // mostra o popup
 };
-document.getElementById("fecharCadastro").onclick = () => modalCadastro.style.display = "none";
-window.onclick = (event) => { 
-  if (event.target == modalCadastro) modalCadastro.style.display = "none"; 
+
+fecharCadastro.onclick = () => {
+  modalCadastro.style.display = "none"; // fecha ao clicar no X
 };
+
+window.onclick = (event) => {
+  if (event.target == modalCadastro) {
+    modalCadastro.style.display = "none"; // fecha ao clicar fora
+  }
+};
+
 
 
   </script>
