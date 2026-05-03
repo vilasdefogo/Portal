@@ -8,6 +8,10 @@
   font-style: normal;
 }
 
+header  {
+  background: #1c1c1c;
+}
+
 /* Corpo da página */
 body {
   margin: 0;
