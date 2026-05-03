@@ -275,7 +275,6 @@ async function enviarCadastro() {
   const mensagemErro = document.getElementById("mensagemErro");
 
   let faltando = [];
-
   if (!nome) faltando.push("Nome");
   if (!posicao) faltando.push("Posição");
   if (!senha) faltando.push("Senha");
@@ -284,24 +283,24 @@ async function enviarCadastro() {
   if (faltando.length > 0) {
     mensagemErro.style.display = "block";
     mensagemErro.innerText = "Preencher todos os campos! Faltando: " + faltando.join(", ");
-    return; // não envia se faltar algo
+    return;
   }
 
-  // Se tudo preenchido, envia
   const formData = new FormData();
   formData.append("nome", nome);
   formData.append("posicao", posicao);
   formData.append("senha", senha);
   formData.append("imagem", arquivo);
 
-  await fetch("URL_DO_SEU_WEBAPP", {
+  await fetch("https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec", {
     method: "POST",
     body: formData
   });
 
   alert("Cadastro realizado com sucesso!");
-  document.getElementById("modalCadastro").style.display = "none"; // fecha popup
+  document.getElementById("modalCadastro").style.display = "none";
 }
+
 
 
 
