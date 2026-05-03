@@ -24,9 +24,38 @@
    
    <main>
      <table id="tabelaMembros"></table>
+  
+  <h2>Membros do Clã</h2>
+  <div id="lista-membros" class="membros-container"></div>
+
+
    </main>
    <script>
      carregarTabela("LINK_CSV_EVENTOS", "tabelaMembros");
+
+  //===========================================================================================================================================//  
+    async function carregarMembros() {
+  const url = "LINK_CSV_MEMBROS"; // link CSV da aba Membros
+  const response = await fetch(url);
+  const data = await response.text();
+  const linhas = data.split("\n").map(l => l.split(","));
+
+  let html = "";
+  for (let i = 1; i < linhas.length; i++) {
+    const nome = linhas[i][0];
+    const posicao = linhas[i][1];
+    html += `
+      <div class="membro-card">
+        <h3>${nome}</h3>
+        <p>Posição: ${posicao}</p>
+      </div>
+    `;
+  }
+  document.getElementById("lista-membros").innerHTML = html;
+}
+
+carregarMembros();
+    
    </script>
  </body>
 </html>
