@@ -26,6 +26,12 @@
    
    <main>
                                                   <!-- AVISOS DO CLÃ -->
+    <div class="novo-aviso">
+  <input type="text" id="autor" placeholder="Seu nome">
+  <input type="text" id="mensagem" placeholder="Digite o aviso">
+  <button onclick="enviarAviso()">Enviar Aviso</button>
+</div>
+
     <div class="avisos">
     <h2>Avisos do Clã</h2>
     <div id="lista-avisos"></div>
@@ -56,7 +62,8 @@
    </main>
    <script>
     // -------------------------------------------------------------------------AVISOS----------------------------------------------------------- //
-     async function carregarAvisos() {
+     
+    async function carregarAvisos() {
     const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=1571891642&single=true&output=csv"; // link da aba publicada
     const response = await fetch(url);
     const data = await response.text();
@@ -73,6 +80,27 @@
   carregarAvisos();
   setInterval(carregarAvisos, 10000); // atualiza a cada 10s
 
+    <div class="novo-aviso">
+  <input type="text" id="autor" placeholder="Seu nome">
+  <input type="text" id="mensagem" placeholder="Digite o aviso">
+  <button onclick="enviarAviso()">Enviar Aviso</button>
+</div>
+
+<script>
+  async function enviarAviso() {
+    const autor = document.getElementById("autor").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    if (autor && mensagem) {
+      await fetch("https://script.google.com/macros/s/AKfycbxv58FakXq39rODn2pOQgGpRNp1ovqupZujoExoVJJfVGeJWsIGAq0wsn1hXO67ZOoZNg/exec", {
+        method: "POST",
+        body: JSON.stringify({ autor, mensagem })
+      });
+      alert("Aviso enviado com sucesso!");
+    } else {
+      alert("Preencha todos os campos!");
+    }
+     }
  // -------------------------------------------------------------------------TABELAS----------------------------------------------------------- //
     
      carregarTabela("LINK_CSV_EVENTOS", "tabelaEventos");
@@ -110,7 +138,7 @@
         nomes.push(linhas[i][0]);
         pontos.push(parseInt(linhas[i][1]));
       }
-
+    }
       
 
     // Substitua pelos links CSV de cada aba publicada
