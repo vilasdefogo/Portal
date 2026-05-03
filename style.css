@@ -9,7 +9,7 @@
 }
 
 header  {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.0);
   margin: 0px 0px 0px 0px;
   height: 150px;         /* Define uma altura fixa */
   align-items: center;  /* Mantém a logo centrada verticalmente */
