@@ -82,7 +82,7 @@
 }
 // Exemplo de carregamento de avisos da planilha
     async function carregarAvisos() {
-      const url = "LINK_CSV_AVISOS"; // link da aba publicada como CSV
+      const url = "https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec"; // link da aba publicada como CSV
       const response = await fetch(url);
       const data = await response.text();
       const linhas = data.split("\n").map(l => l.split(","));
