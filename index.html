@@ -305,7 +305,7 @@ async function enviarCadastro() {
 const reader = new FileReader();
 reader.onload = async function() {
   const base64 = reader.result.split(",")[1]; // tira o prefixo data:image/png;base64
-  await fetch("URL_DO_SEU_WEBAPP", {
+  await fetch("https://script.google.com/macros/s/AKfycbyPF__EYi394rl1lcoXDPKQ7SvH9xvcXWxtSSFNIS0ooVmo9gOGqtX5p2u7elXB_LqQPA/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
