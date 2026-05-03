@@ -144,6 +144,7 @@ nav a:hover {
   animation: pulsarFogo 4s infinite;
   filter: drop-shadow(0 0 10px #ff6600) drop-shadow(0 0 20px #ff3300) drop-shadow(0 0 40px #000);
   transition: opacity 0.3s;
+  transition: transform 0.3s ease; /* Transição suave */
 }
 .logo-fogo:hover {
 width: px;      /* tamanho da imagem */
