@@ -12,7 +12,6 @@ header  {
   background: #000;
   margin: 0px 0px 0px 0px;
   height: 80px;         /* Define uma altura fixa */
-  display: flex;
   align-items: center;  /* Mantém a logo centrada verticalmente */
   overflow: visible;    /* Permite que o efeito da logo saia um pouco do header se necessário */
 }
