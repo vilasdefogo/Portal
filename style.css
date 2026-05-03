@@ -88,6 +88,7 @@ nav a:hover {
   border-bottom: 2px solid #ffffff; /* Linha fixa para marcar a página */
   opacity: 1; /* Garante que não está transparente */
 }
+/* Tamanho das Tabelas resumo */
 main div:tabela-resumo {
    width: 100px;  /* Largura exata */
   height: 100px; /* Altura exata */
@@ -101,8 +102,7 @@ main div:tabela-resumo {
   margin: 10px 20px 10px 20px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.25); /* leve transparência para ver o relevo atrás */
-    width: 100px;  /* Largura exata */
-  height: 100px; /* Altura exata */
+ 
 }
 
 .tabela-resumo h2 {
