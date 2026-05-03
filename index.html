@@ -170,6 +170,17 @@ async function login() {
     document.getElementById("msg").innerText = "Acesso negado!";
   }
 }
+  // Abrir/fechar modal de cadastro
+const modalCadastro = document.getElementById("modalCadastro");
+document.getElementById("abrirCadastro").onclick = (e) => {
+  e.preventDefault(); // evita recarregar a página
+  modalCadastro.style.display = "block";
+};
+document.getElementById("fecharCadastro").onclick = () => modalCadastro.style.display = "none";
+window.onclick = (event) => { 
+  if (event.target == modalCadastro) modalCadastro.style.display = "none"; 
+};
+
 
   </script>
 </body>
