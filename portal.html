@@ -55,6 +55,26 @@
 </div>
    </main>
    <script>
+    // -------------------------------------------------------------------------AVISOS----------------------------------------------------------- //
+     async function carregarAvisos() {
+    const url = "LINK_CSV_AVISOS"; // link da aba publicada
+    const response = await fetch(url);
+    const data = await response.text();
+    const linhas = data.split("\n").map(l => l.split(","));
+
+    let html = "<ul>";
+    for (let i = 1; i < linhas.length; i++) {
+      html += `<li><strong>${linhas[i][0]}:</strong> ${linhas[i][1]} <em>(${linhas[i][2]})</em></li>`;
+    }
+    html += "</ul>";
+    document.getElementById("lista-avisos").innerHTML = html;
+  }
+
+  carregarAvisos();
+  setInterval(carregarAvisos, 10000); // atualiza a cada 10s
+
+ // -------------------------------------------------------------------------TABELAS----------------------------------------------------------- //
+    
      carregarTabela("LINK_CSV_EVENTOS", "tabelaEventos");
  
     async function carregarTabela(url, tabelaId) {
