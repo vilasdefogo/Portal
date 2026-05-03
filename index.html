@@ -267,6 +267,7 @@ window.onclick = (event) => {
     modalCadastro.style.display = "none"; // fecha ao clicar fora
   }
 };
+  
 async function enviarCadastro() {
   const nome = document.getElementById("nomeCadastro").value.trim();
   const posicao = document.getElementById("posicaoCadastro").value.trim();
@@ -300,6 +301,7 @@ async function enviarCadastro() {
   alert("Cadastro realizado com sucesso!");
   document.getElementById("modalCadastro").style.display = "none";
 }
+
 
 
 
