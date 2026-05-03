@@ -287,37 +287,25 @@ async function enviarCadastro() {
     return;
   }
 
-  const formData = new FormData();
-  formData.append("nome", nome);
-  formData.append("posicao", posicao);
-  formData.append("senha", senha);
-  formData.append("imagem", arquivo);
-
-  await fetch("https://script.google.com/macros/s/AKfycbyPF__EYi394rl1lcoXDPKQ7SvH9xvcXWxtSSFNIS0ooVmo9gOGqtX5p2u7elXB_LqQPA/exec", {
-    method: "POST",
-    body: formData
-  });
-
-  alert("Cadastro realizado com sucesso!");
-  document.getElementById("modalCadastro").style.display = "none";
+  const reader = new FileReader();
+  reader.onload = async function() {
+    const base64 = reader.result.split(",")[1]; // tira o prefixo data:image/png;base64
+    await fetch("https://script.google.com/macros/s/AKfycbyPF__EYi394rl1lcoXDPKQ7SvH9xvcXWxtSSFNIS0ooVmo9gOGqtX5p2u7elXB_LqQPA/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nome,
+        posicao,
+        senha,
+        imagemBase64: base64,
+        tipo: arquivo.type
+      })
+    });
+    alert("Cadastro realizado com sucesso!");
+    document.getElementById("modalCadastro").style.display = "none";
+  };
+  reader.readAsDataURL(arquivo);
 }
-
-const reader = new FileReader();
-reader.onload = async function() {
-  const base64 = reader.result.split(",")[1]; // tira o prefixo data:image/png;base64
-  await fetch("https://script.google.com/macros/s/AKfycbyPF__EYi394rl1lcoXDPKQ7SvH9xvcXWxtSSFNIS0ooVmo9gOGqtX5p2u7elXB_LqQPA/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      nome,
-      posicao,
-      senha,
-      imagemBase64: base64,
-      tipo: arquivo.type
-    })
-  });
-};
-reader.readAsDataURL(arquivo);
 
 
 
