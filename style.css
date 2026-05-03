@@ -101,6 +101,8 @@ main div:tabela-resumo {
   margin: 10px 20px 10px 20px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.25); /* leve transparência para ver o relevo atrás */
+    width: 600px;  /* Largura exata */
+  height: 500px; /* Altura exata */
 }
 
 .tabela-resumo h2 {
