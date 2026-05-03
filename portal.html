@@ -26,16 +26,20 @@
    
    <main>
                                                   <!-- AVISOS DO CLÃ -->
-   <div class="novo-aviso">
-  <input type="text" id="autor" placeholder="Seu nome">
-  <input type="text" id="mensagem" placeholder="Digite o aviso">
-  <button onclick="enviarAviso()">Enviar Aviso</button>
+  <!-- Botão para abrir -->
+<button id="abrirAviso">Novo Aviso</button>
+
+<!-- Modal -->
+<div id="modalAviso" class="modal">
+  <div class="modal-conteudo">
+    <span id="fecharAviso" class="fechar">&times;</span>
+    <h2>Adicionar Aviso</h2>
+    <input type="text" id="autor" placeholder="Seu nome">
+    <input type="text" id="mensagem" placeholder="Digite o aviso">
+    <button onclick="enviarAviso()">Enviar Aviso</button>
+  </div>
 </div>
 
-<div class="avisos">
-  <h2>Avisos do Clã</h2>
-  <div id="lista-avisos"></div>
-</div>
 
 
                                                   <!-- SEPARAÇÃO -->
@@ -99,6 +103,33 @@
     setInterval(carregarAvisos, 10000); // atualiza a cada 10s
 
 
+// Script
+const modal = document.getElementById("modalAviso");
+const abrir = document.getElementById("abrirAviso");
+const fechar = document.getElementById("fecharAviso");
+
+abrir.onclick = () => modal.style.display = "block";
+fechar.onclick = () => modal.style.display = "none";
+window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
+
+async function enviarAviso() {
+  const autor = document.getElementById("autor").value;
+  const mensagem = document.getElementById("mensagem").value;
+
+  if (autor && mensagem) {
+    await fetch("URL_DO_SEU_WEBAPP", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ autor, mensagem })
+    });
+    alert("Aviso enviado com sucesso!");
+    document.getElementById("autor").value = "";
+    document.getElementById("mensagem").value = "";
+    modal.style.display = "none"; // fecha o popup
+  } else {
+    alert("Preencha todos os campos!");
+  }
+}
 
  
  // -------------------------------------------------------------------------TABELAS----------------------------------------------------------- //
