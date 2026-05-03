@@ -47,9 +47,9 @@
     const imagem = linhas[i][2]; // nova coluna "Imagem" com URL
     html += `
       <div class="membro-card">
-       <img src="${imagem}" alt="${nome}" class="membro-avatar">
+       <img src="${imagem}" alt="${nome}" alt="${posicao}" class="membro-avatar">
         <h3>${nome}</h3>
-        <h3>Posição: ${posicao}</h3>
+        <p>${posicao}</p>
       </div>
     `;
   }
