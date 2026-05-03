@@ -63,22 +63,22 @@
    <script>
     // -------------------------------------------------------------------------AVISOS----------------------------------------------------------- //
      
-    async function carregarAvisos() {
-    const url = "https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec"; // link da aba publicada
-    const response = await fetch(url);
-    const data = await response.text();
-    const linhas = data.split("\n").map(l => l.split(","));
+   async function enviarAviso() {
+  const autor = document.getElementById("autor").value;
+  const mensagem = document.getElementById("mensagem").value;
 
-    let html = "<ul>";
-    for (let i = 1; i < linhas.length; i++) {
-      html += `<li><strong>${linhas[i][0]}:</strong> ${linhas[i][1]} <em>(${linhas[i][2]})</em></li>`;
-    }
-    html += "</ul>";
-    document.getElementById("lista-avisos").innerHTML = html;
+  if (autor && mensagem) {
+    await fetch("https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ autor, mensagem })
+    });
+    alert("Aviso enviado com sucesso!");
+  } else {
+    alert("Preencha todos os campos!");
   }
+}
 
-  carregarAvisos();
-  setInterval(carregarAvisos, 10000); // atualiza a cada 10s
 
     <div class="novo-aviso">
   <input type="text" id="autor" placeholder="Seu nome">
@@ -86,7 +86,6 @@
   <button onclick="enviarAviso()">Enviar Aviso</button>
 </div>
 
-<script>
   async function enviarAviso() {
     const autor = document.getElementById("autor").value;
     const mensagem = document.getElementById("mensagem").value;
