@@ -248,7 +248,7 @@ width: 250px;      /* tamanho da imagem */
   color: #fff;
   transition: transform 0.2s, box-shadow 0.2s;
   /* Fonte gamer só nos cards */
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Orbitron', cursive;
 }
 
 .membro-card:hover {
