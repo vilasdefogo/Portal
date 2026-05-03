@@ -64,7 +64,7 @@
     // -------------------------------------------------------------------------AVISOS----------------------------------------------------------- //
      
     async function carregarAvisos() {
-    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=1571891642&single=true&output=csv"; // link da aba publicada
+    const url = "https://script.google.com/macros/s/AKfycbzpYbPBlsHpfUK-MSK7s3umLW8Z35Hpjt17tqCtZU8ndJ6IJDlsSYWc6fSlsKKVCUGQ4w/exec"; // link da aba publicada
     const response = await fetch(url);
     const data = await response.text();
     const linhas = data.split("\n").map(l => l.split(","));
