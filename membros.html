@@ -44,8 +44,10 @@
   for (let i = 1; i < linhas.length; i++) {
     const nome = linhas[i][0];
     const posicao = linhas[i][1];
+    const imagem = linhas[i][2]; // nova coluna "Imagem" com URL
     html += `
       <div class="membro-card">
+       <img src="${imagem}" alt="${nome}" class="membro-avatar">
         <h3>${nome}</h3>
         <p>Posição: ${posicao}</p>
       </div>
