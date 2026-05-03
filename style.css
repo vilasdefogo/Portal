@@ -234,6 +234,7 @@ width: 250px;      /* tamanho da imagem */
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  color: #000;
 }
 
 .membro-card {
