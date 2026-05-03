@@ -89,8 +89,8 @@ nav a:hover {
   opacity: 1; /* Garante que não está transparente */
 }
 main div:tabela-resumo {
-   width: 600px;  /* Largura exata */
-  height: 500px; /* Altura exata */
+   width: 100px;  /* Largura exata */
+  height: 100px; /* Altura exata */
 }
 
 /* Tabelas resumo */
