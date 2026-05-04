@@ -41,41 +41,57 @@
 
 
   //===========================================================================================================================================//  
-   async function carregarMembros() {
-  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv";
+ async function carregarMembros() {
+  // O teu link CSV público
+  const url = "https://google.com";
   
   try {
     const response = await fetch(url);
     const data = await response.text();
     
-    // Divide as linhas e remove espaços extras
-    const linhas = data.split("\n").map(l => l.split(","));
+    // Divide por linhas e remove as que estão em branco
+    const linhas = data.split(/\r?\n/).filter(l => l.trim() !== "");
 
     let html = "";
+
+    // Começa em 1 para saltar o cabeçalho (Nome, Posição, Imagem)
     for (let i = 1; i < linhas.length; i++) {
-      if (linhas[i].length < 2) continue; // Pula linhas vazias
+      const colunas = linhas[i].split(",");
+      
+      // Só cria o card se a linha tiver pelo menos Nome e Posição
+      if (colunas.length >= 2) {
+        const nome = colunas[0].replace(/"/g, "").trim();
+        const posicao = colunas[1].replace(/"/g, "").trim();
+        
+        // A imagem está na coluna 3 (índice 2 no JavaScript)
+        let imagem = colunas[2] ? colunas[2].replace(/"/g, "").trim() : "";
 
-      const nome = linhas[i][0].trim();
-      const posicao = linhas[i][1].trim();
-      // Limpa o link de possíveis aspas ou espaços que o CSV gera
-      let imagem = linhas[i][2] ? linhas[i][2].replace(/["\r\n]/g, "").trim() : "";
+        // Se o link for inválido ou vazio, usa uma imagem padrão
+        if (!imagem || imagem.length < 10) {
+          imagem = "https://placeholder.com";
+        }
 
-      // Se não tiver foto, usa uma imagem padrão (avatar genérico)
-      const fotoSrc = imagem !== "" ? imagem : "https://placeholder.com";
-
-      html += `
-        <div class="membro-card">
-          <img src="${fotoSrc}" alt="${nome}" class="membro-avatar">
-          <h3>${nome}</h3>
-          <p>Posição: ${posicao}</p>
-        </div>
-      `;
+        html += `
+          <div class="membro-card">
+            <img src="${imagem}" alt="${nome}" class="membro-avatar">
+            <h3>${nome}</h3>
+            <p>Posição: ${posicao}</p>
+          </div>
+        `;
+      }
     }
+    
     document.getElementById("lista-membros").innerHTML = html;
+
   } catch (erro) {
-    console.error("Erro ao carregar membros:", erro);
+    console.error("Erro crítico:", erro);
+    document.getElementById("lista-membros").innerHTML = "<p>Erro ao carregar a lista.</p>";
   }
 }
+
+// Chama a função ao carregar a página
+carregarMembros();
+
 
     //==========================================================================carregar foto================================================//
     async function atualizarFoto() {
