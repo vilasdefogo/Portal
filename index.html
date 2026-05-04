@@ -271,14 +271,12 @@ async function enviarCadastro() {
   const nome = document.getElementById("nomeCadastro").value.trim();
   const posicao = document.getElementById("posicaoCadastro").value.trim();
   const senha = document.getElementById("senhaCadastro").value.trim();
-  const arquivo = document.getElementById("imagemCadastro").files[0];
   const mensagemErro = document.getElementById("mensagemErro");
 
   let faltando = [];
   if (!nome) faltando.push("Nome");
   if (!posicao) faltando.push("Posição");
   if (!senha) faltando.push("Senha");
-  if (!arquivo) faltando.push("Imagem");
 
   if (faltando.length > 0) {
     mensagemErro.style.display = "block";
@@ -286,24 +284,14 @@ async function enviarCadastro() {
     return;
   }
 
-  const reader = new FileReader();
-  reader.onload = async function() {
-    const base64 = reader.result.split(",")[1]; // tira o prefixo data:image/png;base64
-    await fetch("https://script.google.com/macros/s/AKfycbyRsDNX67aDhMOyv8Hkk3RSdgNTnGVIX6sdEeT4tyCTtlEgxcKR73ss67-Q218BwsD2lQ/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        nome,
-        posicao,
-        senha,
-        imagemBase64: base64,
-        tipo: arquivo.type
-      })
-    });
-    alert("Cadastro realizado com sucesso!");
-    document.getElementById("modalCadastro").style.display = "none";
-  };
-  reader.readAsDataURL(arquivo);
+  await fetch("https://script.google.com/macros/library/d/1Ok3ISVi7cNwiNmSfszIstbNcNSabKfcnDSj7kVqSFl6Y2lBZkIVELSEV/4", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome, posicao, senha })
+  });
+
+  alert("Cadastro realizado com sucesso!");
+  document.getElementById("modalCadastro").style.display = "none";
 }
 
 
