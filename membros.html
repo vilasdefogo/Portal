@@ -78,6 +78,17 @@
     <p>Posição: ${posicao}</p>
   </div>
 `;
+html += `
+  <div class="membro-card">
+    <img src="${imagem}" 
+         alt="${nome}" 
+         class="membro-avatar" 
+         referrerpolicy="no-referrer"
+         onerror="this.src='https://flaticon.com'; console.log('Erro ao carregar imagem do Drive');">
+    <h3>${nome}</h3>
+    <p>Posição: ${posicao}</p>
+  </div>
+`;
 
       }
     }
