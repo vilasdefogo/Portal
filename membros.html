@@ -97,32 +97,42 @@ carregarMembros();
     async function atualizarFoto() {
   const nome = document.getElementById("upNome").value;
   const senha = document.getElementById("upSenha").value;
-  let link = document.getElementById("upLink").value;
+  let linkOriginal = document.getElementById("upLink").value.trim();
 
-  if (!nome || !senha || !link) return alert("Preencha tudo!");
+  if (!nome || !senha || !linkOriginal) return alert("Preencha tudo!");
 
-  // Lógica para converter link do Google Drive automaticamente
-  if (link.includes("://google.com")) {
-      const regex = /\/d\/([^\/]+)/;
-      const match = link.match(regex);
-      if (match && match[1]) {
-          link = `https://googleusercontent.com{match[1]}`;
+  let linkConvertido = linkOriginal;
+
+  // VERIFICAÇÃO E CONVERSÃO DO LINK DRIVE
+  if (linkOriginal.includes("://google.com")) {
+      // Extrai o ID do arquivo usando regex
+      const idMatch = linkOriginal.match(/\/d\/([^\/]+)/) || linkOriginal.match(/id=([^&]+)/);
+      if (idMatch && idMatch[1]) {
+          const id = idMatch[1];
+          linkConvertido = `https://googleusercontent.com{id}`;
       }
   }
 
-  await fetch("https://google.com", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify({ 
-      acao: "atualizarFoto", 
-      nome: nome, 
-      senha: senha, 
-      foto: link 
-    })
-  });
+  // Envia para o WebApp com o link já transformado
+  try {
+    await fetch("https://google.com", {
+      method: "POST",
+      mode: "no-cors", // Mantemos o no-cors para evitar erro de redirecionamento
+      body: JSON.stringify({ 
+        acao: "atualizarFoto", 
+        nome: nome, 
+        senha: senha, 
+        foto: linkConvertido // Envia o link já pronto para ser imagem
+      })
+    });
 
-  alert("Link convertido e enviado! Aguarde a atualização.");
+    alert("Solicitação enviada com o link convertido! Verifique a planilha em instantes.");
+  } catch (erro) {
+    alert("Erro ao enviar. Tente novamente.");
+    console.error(erro);
+  }
 }
+
 
 
    </script>
