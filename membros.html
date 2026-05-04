@@ -73,7 +73,7 @@ carregarMembros();
   if (!nome || !senha || !link) return alert("Preencha tudo!");
 
   // Envia para o mesmo WebApp que já criamos
-  await fetch("TEU_LINK_DO_GOOGLE_SCRIPT_EXEC", {
+  await fetch("https://script.google.com/macros/s/AKfycbzQ6MC5AqJqH3LLlPoUtuUiUv8SX2kcxVQMyn9kwZF2xrXmDd0AWnI39H8TP32b4-9aUw/exec", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify({ 
