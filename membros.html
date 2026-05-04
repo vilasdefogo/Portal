@@ -1,203 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos - Vilas de Fogo</title>
-    <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do portal -->
+    <title>Membros - Vilas de Fogo</title>
+    <link rel="stylesheet" href="style.css">
     <nav>
         <div class="menu-links">
-          <a href="portal.html">Home</a>
-          <a href="membros.html" class="active">Membros</a>
-          <a href="batalhas.html">Batalhas</a>
-          <a href="eventos.html">Eventos</a>
-          <a href="ranking.html">Ranking</a>
-          <a href="equipes.html">Equipes</a>
+            <a href="portal.html">Home</a>
+            <a href="membros.html" class="active">Membros</a>
+            <a href="batalhas.html">Batalhas</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="ranking.html">Ranking</a>
+            <a href="equipes.html">Equipes</a>
         </div>
-      <a href="index.html" class="btn-sair">Sair</a>
-     </nav>
- </head>
- <body>
-   <header>
-   <img src="assets/imagens/LOGO2.png" alt="Logo Fogo" class="logo-fogo">
-   </header>
-   
-   <main>
-     
-  
-  <h2 class="titulo-bady">Membros do Clã</h2>
-  <div id="lista-membros" class="membros-container"></div>
+        <a href="index.html" class="btn-sair">Sair</a>
+    </nav>
+</head>
+<body>
+    <header>
+        <img src="assets/imagens/LOGO2.png" alt="Logo Fogo" class="logo-fogo">
+    </header>
 
-<div class="atualizar-foto">
-  <h3>Atualizar minha Foto</h3>
-  <input type="text" id="upNome" placeholder="Seu Nome">
-  <input type="password" id="upSenha" placeholder="Sua Senha">
-  <input type="text" id="upLink" placeholder="Link da Imagem (URL)">
-  <button onclick="atualizarFoto()">Atualizar Perfil</button>
-</div>
+    <main>
+        <h2 class="titulo-bady">Membros do Clã</h2>
+        <div id="lista-membros" class="membros-container"></div>
 
-   </main>
-   <script>
+        <div class="atualizar-foto" style="margin-top: 50px; padding: 20px; background: #1a1a1a; border-radius: 10px; text-align: center;">
+            <h3 style="color: #fff;">Atualizar minha Foto</h3>
+            <input type="text" id="upNome" placeholder="Seu Nome">
+            <input type="password" id="upSenha" placeholder="Sua Senha">
+            <input type="text" id="upLink" placeholder="Link da Imagem (Drive ou URL)">
+            <button onclick="atualizarFoto()">Atualizar Perfil</button>
+        </div>
+    </main>
 
+    <script>
+        // FUNÇÃO PARA CARREGAR OS CARDS
+        async function carregarMembros() {
+            const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv";
 
-  //===========================================================================================================================================//  
- async function carregarMembros() {
-  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv";
-  
-  try {
-    const response = await fetch(url);
-    const data = await response.text();
-    
-    // Divide por linhas e limpa espaços
-    const linhas = data.split(/\r?\n/).filter(l => l.trim() !== "");
-    let html = "";
+            try {
+                const response = await fetch(url);
+                const data = await response.text();
+                const linhas = data.split(/\r?\n/).filter(l => l.trim() !== "");
+                let html = "";
 
-    for (let i = 1; i < linhas.length; i++) {
-      const colunas = linhas[i].split(",");
-      
-      if (colunas.length >= 2) {
-        const nome = colunas[0].replace(/"/g, "").trim();
-        const posicao = colunas[1].replace(/"/g, "").trim();
-        let imagemRaw = colunas[2] ? colunas[2].replace(/"/g, "").trim() : "";
+                for (let i = 1; i < linhas.length; i++) {
+                    const colunas = linhas[i].split(",");
+                    if (colunas.length >= 2) {
+                        const nome = colunas[0].replace(/"/g, "").trim();
+                        const posicao = colunas[1].replace(/"/g, "").trim();
+                        let imagemRaw = colunas[2] ? colunas[2].replace(/"/g, "").trim() : "";
 
-        // Tenta converter o link do Drive se ele existir
-        let imagemFinal = "https://flaticon.com"; // Padrão
-        
-        if (imagemRaw.includes("://google.com")) {
-            const idMatch = imagemRaw.match(/\/d\/([^\/]+)/) || imagemRaw.match(/id=([^&]+)/);
-            if (idMatch) {
-                imagemFinal = `https://://google.com/uc?export=view&id=${idMatch[1]}`;
+                        // Define imagem padrão se estiver vazio
+                        let imagemFinal = "https://placeholder.com";
+
+                        if (imagemRaw.includes("drive.google.com")) {
+                            const idMatch = imagemRaw.match(/\/d\/([^\/]+)/) || imagemRaw.match(/id=([^&]+)/);
+                            if (idMatch && idMatch[1]) {
+                                imagemFinal = `https://google.com{idMatch[1]}`;
+                            }
+                        } else if (imagemRaw.startsWith("http")) {
+                            imagemFinal = imagemRaw;
+                        }
+
+                        html += `
+                        <div class="membro-card" style="display:inline-block; width:150px; margin:15px; text-align:center; vertical-align:top;">
+                            <div class="membro-avatar-container" style="width:100px; height:100px; margin: 0 auto 10px; overflow:hidden; border-radius:50%; border:3px solid #ff6600; background: #222;">
+                                <img src="${imagemFinal}" alt="${nome}" style="width:100%; height:100%; object-fit:cover;" referrerpolicy="no-referrer">
+                            </div>
+                            <h3 style="color:#fff; margin:5px 0; font-size:16px;">${nome}</h3>
+                            <p style="color:#ffd700; font-size: 13px;">${posicao}</p>
+                        </div>`;
+                    }
+                }
+                document.getElementById("lista-membros").innerHTML = html;
+            } catch (erro) {
+                console.error("Erro:", erro);
+                document.getElementById("lista-membros").innerHTML = "<p>Erro ao carregar membros.</p>";
             }
-        } else if (imagemRaw.startsWith("http")) {
-            imagemFinal = imagemRaw;
         }
 
-        html += `
-          <div class="membro-card">
-            <div style="width:120px; height:120px; margin: 0 auto 10px; overflow:hidden; border-radius:50%; border:3px solid #ff6600; background: #222;">
-                <img src="${imagemFinal}" 
-                     alt="${nome}" 
-                     style="width:100%; height:100%; object-fit:cover;"
-                     referrerpolicy="no-referrer">
-            </div>
-            <h3 style="color:#fff; margin:5px 0;">${nome}</h3>
-            <p style="color:#ffd700; font-size: 0.9em;">${posicao}</p>
-          </div>
-        `;
-      }
-    }
-    
-    document.getElementById("lista-membros").innerHTML = html;
+        // FUNÇÃO PARA ENVIAR A FOTO
+        async function atualizarFoto() {
+            const nome = document.getElementById("upNome").value;
+            const senha = document.getElementById("upSenha").value;
+            const link = document.getElementById("upLink").value.trim();
 
-  } catch (erro) {
-    console.error("Erro:", erro);
-    document.getElementById("lista-membros").innerHTML = "<p>Erro ao carregar os ninjas.</p>";
-  }
-}
+            if (!nome || !senha || !link) return alert("Preencha todos os campos!");
 
-
-
-    //==========================================================================carregar foto================================================//
-    async function atualizarFoto() {
-  const nome = document.getElementById("upNome").value;
-//===========================================================================================================================================//  
-async function carregarMembros() {
-  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv";
-  
-  try {
-    const response = await fetch(url);
-    const data = await response.text();
-    
-    const linhas = data.split(/\r?\n/).filter(l => l.trim() !== "");
-    let html = "";
-
-    for (let i = 1; i < linhas.length; i++) {
-      const colunas = linhas[i].split(",");
-      
-      if (colunas.length >= 2) {
-        const nome = colunas[0].replace(/"/g, "").trim();
-        const posicao = colunas[1].replace(/"/g, "").trim();
-        let imagemRaw = colunas[2] ? colunas[2].replace(/"/g, "").trim() : "";
-
-        // Link padrão (Avatar cinza) caso não tenha foto
-        let imagemFinal = "https://flaticon.com"; 
-        
-        // CORREÇÃO: Conversão correta do link do Google Drive
-        if (imagemRaw.includes("drive.google.com")) {
-            const idMatch = imagemRaw.match(/\/d\/([^\/]+)/) || imagemRaw.match(/id=([^&]+)/);
-            if (idMatch && idMatch[1]) {
-                imagemFinal = `https://google.com{idMatch[1]}`;
+            try {
+                await fetch("https://script.google.com/macros/s/AKfycbw1U9O2X70q7axNidRAzNSVmAdLouwltE6dXDui3Y-t9cZQe1ynyb3kF7Ozf5tOiFzp/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: JSON.stringify({
+                        acao: "atualizarFoto",
+                        nome: nome,
+                        senha: senha,
+                        foto: link
+                    })
+                });
+                alert("Enviado! A foto aparecerá assim que o Google atualizar a planilha (pode levar alguns minutos).");
+            } catch (erro) {
+                alert("Erro na conexão.");
             }
-        } else if (imagemRaw.startsWith("http")) {
-            imagemFinal = imagemRaw;
         }
 
-        html += `
-          <div class="membro-card" style="display:inline-block; width:150px; margin:10px; text-align:center; vertical-align:top;">
-            <div style="width:100px; height:100px; margin: 0 auto 10px; overflow:hidden; border-radius:50%; border:3px solid #ff6600; background: #222;">
-                <img src="${imagemFinal}" 
-                     alt="${nome}" 
-                     style="width:100%; height:100%; object-fit:cover;"
-                     referrerpolicy="no-referrer"
-                     onerror="this.src='https://flaticon.com'">
-            </div>
-            <h3 style="color:#fff; margin:5px 0; font-size:16px;">${nome}</h3>
-            <p style="color:#ffd700; font-size: 13px;">${posicao}</p>
-          </div>
-        `;
-      }
-    }
-    
-    document.getElementById("lista-membros").innerHTML = html;
-
-  } catch (erro) {
-    console.error("Erro:", erro);
-    document.getElementById("lista-membros").innerHTML = "<p>Erro ao carregar os ninjas.</p>";
-  }
-}
-
-// IMPORTANTE: Esta linha faz os cards aparecerem assim que a página abre!
-carregarMembros();
-
-//==========================================================================carregar foto================================================//
-async function atualizarFoto() {
-  const nome = document.getElementById("upNome").value;
-  const senha = document.getElementById("upSenha").value;
-  let linkOriginal = document.getElementById("upLink").value.trim();
-
-  if (!nome || !senha || !linkOriginal) return alert("Preencha tudo!");
-
-  let linkConvertido = linkOriginal;
-
-  // Ajuste na conversão do link para salvar na planilha
-  if (linkOriginal.includes("drive.google.com")) {
-      const idMatch = linkOriginal.match(/\/d\/([^\/]+)/) || linkOriginal.match(/id=([^&]+)/);
-      if (idMatch && idMatch[1]) {
-          linkConvertido = `https://google.com{idMatch[1]}`;
-      }
-  }
-
-  try {
-    // Aqui use o link real do seu WebApp do Google (AKfycb...)
-    await fetch("https://script.google.com/macros/s/AKfycbw1U9O2X70q7axNidRAzNSVmAdLouwltE6dXDui3Y-t9cZQe1ynyb3kF7Ozf5tOiFzp/exec", {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify({ 
-        acao: "atualizarFoto", 
-        nome: nome, 
-        senha: senha, 
-        foto: linkConvertido 
-      })
-    });
-
-    alert("Solicitação enviada! Se os dados estiverem certos, a foto atualizará em breve.");
-  } catch (erro) {
-    alert("Erro ao enviar. Tente novamente.");
-  }
-}
-
-
-
-   </script>
- </body>
+        // Inicia o carregamento ao abrir a página
+        carregarMembros();
+    </script>
+</body>
 </html>
