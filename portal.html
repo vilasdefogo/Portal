@@ -86,7 +86,7 @@ async function enviarAviso() {
   const mensagem = document.getElementById("mensagem").value;
 
   if (autor && mensagem) {
-    await fetch("https://script.google.com/macros/s/AKfycbyPF__EYi394rl1lcoXDPKQ7SvH9xvcXWxtSSFNIS0ooVmo9gOGqtX5p2u7elXB_LqQPA/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbyhmCIdo9BaV-uHRREkbfLW66FJY3QqUlCRif2GyJ9oVNBa_ECu3cGSgkpXe3yYiEFH5A/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ autor, mensagem })
