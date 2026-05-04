@@ -286,6 +286,7 @@ async function enviarCadastro() {
 
   await fetch("https://script.google.com/macros/library/d/1Ok3ISVi7cNwiNmSfszIstbNcNSabKfcnDSj7kVqSFl6Y2lBZkIVELSEV/4", {
     method: "POST",
+     mode: "no-cors", // <--- ADICIONA ESTA LINHA para ignorar o bloqueio de resposta
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ nome, posicao, senha })
   });
