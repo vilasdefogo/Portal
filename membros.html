@@ -28,6 +28,13 @@
   <h2 class="titulo-bady">Membros do Clã</h2>
   <div id="lista-membros" class="membros-container"></div>
 
+<div class="atualizar-foto">
+  <h3>Atualizar minha Foto</h3>
+  <input type="text" id="upNome" placeholder="Seu Nome">
+  <input type="password" id="upSenha" placeholder="Sua Senha">
+  <input type="text" id="upLink" placeholder="Link da Imagem (URL)">
+  <button onclick="atualizarFoto()">Atualizar Perfil</button>
+</div>
 
    </main>
    <script>
@@ -57,7 +64,29 @@
 }
 
 carregarMembros();
-    
+    //==========================================================================carregar foto================================================//
+    async function atualizarFoto() {
+  const nome = document.getElementById("upNome").value;
+  const senha = document.getElementById("upSenha").value;
+  const link = document.getElementById("upLink").value;
+
+  if (!nome || !senha || !link) return alert("Preencha tudo!");
+
+  // Envia para o mesmo WebApp que já criamos
+  await fetch("TEU_LINK_DO_GOOGLE_SCRIPT_EXEC", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({ 
+      acao: "atualizarFoto", 
+      nome: nome, 
+      senha: senha, 
+      foto: link 
+    })
+  });
+
+  alert("Solicitação enviada! Aguarde a atualização.");
+}
+
    </script>
  </body>
 </html>
