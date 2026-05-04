@@ -5,7 +5,7 @@
   font-family: 'Neo';
   src: url('assets/Fonts/neo/Neo.woff2') format('woff2'),
        url('assets/Fonts/neo/Neo.woff') format('woff'),
-       url('assets/Fonts/neo/Neo.ttf') format('truetype');
+       url('assets/Fonts/neo/neo/Neo.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
