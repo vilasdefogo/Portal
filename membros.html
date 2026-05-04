@@ -56,7 +56,8 @@
                         let imagemRaw = colunas[2] ? colunas[2].replace(/"/g, "").trim() : "";
 
                         // Define imagem padrão se estiver vazio
-                        let imagemFinal = "https://placeholder.com";
+                        let imagemFinal = "https://via.placeholder.com/100";
+
 
                         if (imagemRaw.includes("drive.google.com")) {
                             const idMatch = imagemRaw.match(/\/d\/([^\/]+)/) || imagemRaw.match(/id=([^&]+)/);
