@@ -38,6 +38,8 @@
     <script>
         // FUNÇÃO PARA CARREGAR OS CARDS
         async function carregarMembros() {
+              // ADICIONE ESTA LINHA ABAIXO:
+  document.getElementById("lista-membros").innerHTML = ""; 
             const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv";
 
             try {
