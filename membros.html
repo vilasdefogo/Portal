@@ -97,12 +97,20 @@ carregarMembros();
     async function atualizarFoto() {
   const nome = document.getElementById("upNome").value;
   const senha = document.getElementById("upSenha").value;
-  const link = document.getElementById("upLink").value;
+  let link = document.getElementById("upLink").value;
 
   if (!nome || !senha || !link) return alert("Preencha tudo!");
 
-  // Envia para o mesmo WebApp que já criamos
-  await fetch("https://script.google.com/macros/s/AKfycbw1U9O2X70q7axNidRAzNSVmAdLouwltE6dXDui3Y-t9cZQe1ynyb3kF7Ozf5tOiFzp/exec", {
+  // Lógica para converter link do Google Drive automaticamente
+  if (link.includes("://google.com")) {
+      const regex = /\/d\/([^\/]+)/;
+      const match = link.match(regex);
+      if (match && match[1]) {
+          link = `https://googleusercontent.com{match[1]}`;
+      }
+  }
+
+  await fetch("https://google.com", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify({ 
@@ -113,8 +121,9 @@ carregarMembros();
     })
   });
 
-  alert("Solicitação enviada! Aguarde a atualização.");
+  alert("Link convertido e enviado! Aguarde a atualização.");
 }
+
 
    </script>
  </body>
