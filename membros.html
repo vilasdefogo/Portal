@@ -42,54 +42,46 @@
 
   //===========================================================================================================================================//  
  async function carregarMembros() {
-  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfXdUtm1B53gPy7DY3wWI1GHr3Ucg-cFHmhcMeWIL-E_v3pbDMUhz0N2S72yYYnygYRBb171d0p98y/pub?gid=760823650&single=true&output=csv";
+  const url = "https://google.com";
   
   try {
     const response = await fetch(url);
     const data = await response.text();
+    
+    // Divide por linhas e limpa espaços
     const linhas = data.split(/\r?\n/).filter(l => l.trim() !== "");
-
     let html = "";
 
     for (let i = 1; i < linhas.length; i++) {
-      // Esta regex separa por vírgula mas ignora vírgulas dentro de aspas
-      const colunas = linhas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+      const colunas = linhas[i].split(",");
       
       if (colunas.length >= 2) {
         const nome = colunas[0].replace(/"/g, "").trim();
         const posicao = colunas[1].replace(/"/g, "").trim();
-        
-        // Pega a coluna 3 (índice 2). Se não existir, fica vazio.
         let imagemRaw = colunas[2] ? colunas[2].replace(/"/g, "").trim() : "";
+
+        // Tenta converter o link do Drive se ele existir
+        let imagemFinal = "https://flaticon.com"; // Padrão
         
-        // Link padrão caso o do Drive falhe
-        const fotoPadrao = "https://flaticon.com";
-        let imagemFinal = imagemRaw;
-
-        // Se o link for do Drive mas não estiver no formato direto, tenta converter
-        if (imagemRaw.includes("://google.com") && !imagemRaw.includes("uc?")) {
-           const idMatch = imagemRaw.match(/\/d\/([^\/]+)/);
-           if (idMatch) {
-              imagemFinal = `https://://google.com/uc?export=view&id=${idMatch[1]}`;
-           }
-        }
-
-        // Se estiver vazio, usa o padrão
-        if (!imagemFinal || imagemFinal.length < 10) {
-          imagemFinal = fotoPadrao;
+        if (imagemRaw.includes("://google.com")) {
+            const idMatch = imagemRaw.match(/\/d\/([^\/]+)/) || imagemRaw.match(/id=([^&]+)/);
+            if (idMatch) {
+                imagemFinal = `https://://google.com/uc?export=view&id=${idMatch[1]}`;
+            }
+        } else if (imagemRaw.startsWith("http")) {
+            imagemFinal = imagemRaw;
         }
 
         html += `
           <div class="membro-card">
-            <div style="width:100px; height:100px; margin: 0 auto; overflow:hidden; border-radius:50%; border:2px solid #ff6600;">
+            <div style="width:120px; height:120px; margin: 0 auto 10px; overflow:hidden; border-radius:50%; border:3px solid #ff6600; background: #222;">
                 <img src="${imagemFinal}" 
                      alt="${nome}" 
                      style="width:100%; height:100%; object-fit:cover;"
-                     referrerpolicy="no-referrer"
-                     onerror="this.src='${fotoPadrao}';">
+                     referrerpolicy="no-referrer">
             </div>
-            <h3>${nome}</h3>
-            <p>Posição: ${posicao}</p>
+            <h3 style="color:#fff; margin:5px 0;">${nome}</h3>
+            <p style="color:#ffd700; font-size: 0.9em;">${posicao}</p>
           </div>
         `;
       }
@@ -98,11 +90,11 @@
     document.getElementById("lista-membros").innerHTML = html;
 
   } catch (erro) {
-    console.error("Erro ao carregar:", erro);
-    document.getElementById("lista-membros").innerHTML = "<p>Erro ao carregar a lista.</p>";
+    console.error("Erro:", erro);
+    document.getElementById("lista-membros").innerHTML = "<p>Erro ao carregar os ninjas.</p>";
   }
 }
-;
+
 
 
     //==========================================================================carregar foto================================================//
