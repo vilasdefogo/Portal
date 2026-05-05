@@ -39,8 +39,26 @@
 </div>
 
     </main>
-
+<section id="clan-info"></section>
     <script>
+         async function carregarClan() {
+    const response = await fetch("https://SEU-PROJETO.netlify.app/.netlify/functions/clan");
+    const data = await response.json();
+
+    document.getElementById("clan-info").innerHTML = `
+      <h2>${data.name} (Nível ${data.clanLevel})</h2>
+      <ul>
+        ${data.memberList.map(m => `
+          <li>
+            <img src="${m.league.iconUrls.small}" alt="${m.name}">
+            ${m.name} - ${m.role} - TH ${m.townHallLevel}
+          </li>
+        `).join("")}
+      </ul>
+    `;
+  }
+
+  carregarClan();
         // FUNÇÃO PARA CARREGAR OS CARDS
        async function carregarMembros() {
   document.getElementById("lista-membros").innerHTML = ""; 
